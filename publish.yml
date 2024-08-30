@@ -1,13 +1,13 @@
 site:
   title: Neo4j Docs
-  url: https://neo4j.com/docs
+  url: https://neo4j-driver.qubitpi.org
 #  start_page: python-manual::index.adoc
 
 content:
   sources:
   - url : ./
     branches: ['HEAD','4.4','4.3','4.2']
-    edit_url: https://github.com/neo4j/docs-drivers/tree/{refname}/{path}
+    edit_url: https://github.com/QubitPi/neo4j-docs-drivers/tree/{refname}/{path}
     worktrees: true
     start_paths:
     - dotnet-manual
@@ -22,7 +22,7 @@ content:
     - '!**/README.adoc'
   - url : ./
     branches: ['4.1','4.0','1.7']
-    edit_url: https://github.com/neo4j/docs-drivers/tree/{refname}/{path}
+    edit_url: https://github.com/QubitPi/neo4j-docs-drivers/tree/{refname}/{path}
     worktrees: true
     exclude:
     - '!**/_includes/*'
@@ -30,6 +30,8 @@ content:
     - '!**/README.adoc'
 ui:
   bundle:
+    # in case this gets close sourced, its backup is at
+    # https://github.com/QubitPi/QubitPi/blob/master/neo4j/ui-bundle-latest.zip
     url: https://static-content.neo4j.com/build/ui-bundle-latest.zip
     snapshot: true
   output_dir: /assets
