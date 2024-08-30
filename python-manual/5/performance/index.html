@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+<!-- Hotjar Tracking Code for staging -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3587741,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<!-- End Hotjar Tracking code -->
+    <title>Performance recommendations - Neo4j Python Driver Manual</title>
+    <link rel="prev" href="../query-advanced/">
+    <link rel="next" href="../connect-advanced/">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+
+
+    <link rel="preload" href="../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../assets/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+    <meta property="neo:type" content="Docs">
+    <meta property="neo:site" content="Reference Docs">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Performance recommendations - Neo4j Python Driver Manual" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20210423062553/neo4j-social-share-21.png" />
+    <meta property="og:description" content="Performance recommendations - Neo4j Python Driver Manual" />
+    <meta property="og:url" content="https://neo4j.com/docs/python-manual/5/performance/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article docs">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("4bfb2414ab973c741b6f067bf06d5575", {batch_requests: true})
+mixpanel.track("Page View", {
+    pathname: window.location.origin + window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    referrer: document.referrer,
+})
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
+      <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
+        Docs
+      </a>
+
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+                <li><a href="/docs/graph-data-science-client/current/" class="project-link">Neo4j Graph Data Science Client</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+           <div class="navbar-item project">
+              <span class="project-name" href="/docs/genai">Generative AI</span>
+              <ul class="project-links">
+                <li><a href="/docs/genai/tutorials/embeddings-vector-indexes/" class="project-link">Embeddings and vector indexes tutorial</a></li>
+                <li><a href="/docs/cypher-manual/current/genai-integrations/" class="project-link">GenAI integrations</a></li>
+                <li><a href="/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/" class="project-link">Vector search indexes</a></li>
+              </ul>
+            </div>
+            
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/create-applications">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/nvl/current/" class="project-link">Neo4j Visualization Library</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/query-api/current/" class="project-link">Neo4j Query API</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/connectors">Connect data sources</span>
+              <ul class="project-links">
+                <li><a href="/docs/spark/current/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+                <li><a href="/docs/cdc/" class="project-link">Change Data Capture (CDC)</a></li>
+                <li><a href="/docs/dataflow-bigquery/" class="project-link">BigQuery to Neo4j</a></li>
+                <li><a href="/docs/dataflow-google-cloud/" class="project-link">Google Cloud to Neo4j</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/genai-ecosystem/">GenAI Ecosystem</a>
+              <ul class="project-links">
+                <li><a href="/labs/genai-ecosystem/llm-graph-builder/" class="project-link">LLM Knowledge Graph Builder</a></li>
+                <li><a href="/labs/genai-ecosystem/vector-search/" class="project-link">Vector Index &amp; Search</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain/" class="project-link">LangChain</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain-js/" class="project-link">LangChain.js</a></li>
+                <li><a href="/labs/genai-ecosystem/llamaindex/" class="project-link">LlamaIndex</a></li>
+                <li><a href="/labs/genai-ecosystem/haystack/" class="project-link">Haystack</a></li>
+                <li><a href="/labs/genai-ecosystem/dspy/" class="project-link">DSPy</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name" href="/labs/apoc/">Developer Tools</strong>
+              <ul class="project-links">
+                <li><a href="/labs/apoc/" class="project-link">APOC Extended</a></li>
+                <li><a class="project-link" href="/labs/aura-cli/">Aura CLI</a></li>
+                <li><a class="project-link" href="/labs/arrows/">arrows.app</a></li>
+                <li><a class="project-link" href="/labs/cypher-workbench/">Cypher Workbench</a></li>
+                <li><a class="project-link" href="/labs/etl-tool/">ETL Tool</a></li>
+                <li><a class="project-link" href="/labs/neodash/">NeoDash</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name">Frameworks &amp; Integrations</strong>
+              <ul class="project-links">
+                <li><a class="project-link" href="/labs/neo4j-needle-starterkit/">Needle Starter Kit</a></li>
+                <li><a class="project-link" href="/labs/liquibase/">Neo4j Plugin for Liquibase</a></li>
+                <li><a class="project-link" href="/labs/neo4j-migrations/">Neo4j Migrations</a></li>
+                <li><a class="project-link" href="/labs/neomodel/">neomodel</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">RDF &amp; Linked Data</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/" class="project-link">Neosemantics (Java)</a></li>
+                <li><a href="/labs/rdflib-neo4j/" class="project-link">RDFLib-Neo4j (Python)</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/developer/kb" target="_blank">Knowledge Base</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="https://graphacademy.neo4j.com/?ref=docs-nav">GraphAcademy</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/beginners/?ref=docs-nav" target="_blank">Beginners Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-fundamentals/?ref=docs-nav">Neo4j Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/cypher-fundamentals/?ref=docs-nav">Cypher Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-fundamentals/?ref=docs-nav">Importing Data Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-csv-data/?ref=docs-nav">Importing CSV Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=docs-nav">Graph Data Modeling</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/data-scientist/?ref=docs-nav" target="_blank">Data Scientist Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-product-introduction/?ref=docs-nav">Into to Graph Data Science</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/graph-data-science-fundamentals/?ref=docs-nav">Graph Data Science Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-shortest-paths/?ref=docs-nav">Path Finding</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/llms/?ref=docs-nav" target="_blank">Generative AI Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-fundamentals/?ref=docs-nav">Neo4j &amp; LLM Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-vectors-unstructured//?ref=docs-nav">Vector Indexes &amp; Unstructured Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=docs-nav">Build a Chatbot with Python</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-typescript/?ref=docs-nav">Build a Chatbot with TypeScript</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/certification/?ref=docs-nav" target="_blank">Neo4j Certification</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-certification/?ref=docs-nav">Neo4j Certified Professional</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-certification/?ref=docs-nav">Neo4j Graph Data Science Certification</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://neo4j.com/cloud/platform/aura-graph-database/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+<div class="body">
+    <a class="show-on-focus skip-link" href="#skip-to-content" title="Skip to content">Skip to content</a>
+<div class="nav-container" data-component="python-manual" data-version="5">
+  <aside class="nav">
+    <div class="panels">
+      <div class="component">
+  <div class="nav-product">
+    <span class="nav-product-name">Neo4j Python Driver Manual</span>
+  </div>
+</div>
+      
+
+
+
+
+
+      <div class="nav-panel-menu is-active" data-panel="menu">
+    <nav class="nav-menu">
+    <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="0">
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../">Quickstart</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-section-header">
+        <strong>Regular workflow</strong>
+        </span>
+                  </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../install/">Installation</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../connect/">Connect to the database</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../query-simple/">Query the database</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../transformers/">Manipulate query results</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-section-header">
+        <strong>Advanced usage</strong>
+        </span>
+                  </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../transactions/">Run your own transactions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../result-summary/">Explore the query execution summary</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../bookmarks/">Coordinate parallel transactions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../concurrency/">Run concurrent transactions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../query-advanced/">Further query mechanisms</a>
+            </li>
+    <li class="nav-item is-current-page" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="./">Performance recommendations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-section-header">
+        <strong>Reference</strong>
+        </span>
+                  </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../connect-advanced/">Advanced connection information</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../data-types/">Data types and mapping to Cypher types</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+        <a href="https://neo4j.com/docs/api/python-driver/current/" target="_blank" rel="noopener">API documentation</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-section-header">
+        <strong>GraphAcademy courses</strong>
+        </span>
+                  </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+        <a href="https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=docs-python" target="_blank" rel="noopener">Graph Data Modeling Fundamentals</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+        <a href="https://graphacademy.neo4j.com/courses/cypher-intermediate-queries/?ref=docs-python" target="_blank" rel="noopener">Intermediate Cypher Queries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+        <a href="https://graphacademy.neo4j.com/courses/app-python/?ref=docs-python" target="_blank" rel="noopener">Building Neo4j Applications with Python</a>
+            </li>
+</ul>
+    </li>
+</ul>
+
+  </nav>
+</div>
+        <div class="feedback" style="height: var(--feedback-height);">
+    <div class="header question">
+        <p><strong>Is this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    
+    
+
+    
+    <a href="https://neo4j-driver.qubitpi.org" class="home-link" aria-label="Go to docs home page"></a>
+    
+
+
+    <nav class="breadcrumbs" aria-label="breadcrumbs menu">
+  <ul>
+
+    <li><a href="../">Neo4j Python Driver Manual</a></li>
+
+    <li><a href="./">
+        Performance recommendations
+    </a></li>
+  </ul>
+</nav>
+        <div class="edit-this-page"><a href="https://github.com/QubitPi/neo4j-docs-drivers/tree/HEAD/python-manual/modules/ROOT/pages/performance.adoc">Edit this Page</a></div>
+    </div>
+</div>
+
+  
+  <div class="content">
+    <div id="skip-to-content"></div>
+<article class="doc">
+<div class="sect-header">
+  <h1 class="page">Performance recommendations</h1>
+</div>
+
+
+
+
+
+<div class="sect1">
+<h2 id="target-database"><a class="anchor" href="#target-database"></a>Always specify the target database</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Specify the target database on all queries</strong>, either with the <a href="../query-simple/#_database_selection" class="xref page"><code>database_</code> parameter in <code>Driver.execute_query()</code></a> or with the <a href="../transactions/#_database_selection" class="xref page"><code>database</code> parameter when creating new sessions</a>.
+If no database is provided, the driver has to send an extra request to the server to figure out what the default database is.
+The overhead is minimal for a single query, but becomes significant over hundreds of queries.</p>
+</div>
+<h3 id="_good_practices" class="discrete">Good practices</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">driver.execute_query("&lt;QUERY&gt;", database_="&lt;DB NAME&gt;")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">driver.session(database="&lt;DB NAME&gt;")</code></pre>
+</div>
+</div>
+<h3 id="_bad_practices" class="discrete">Bad practices</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">driver.execute_query("&lt;QUERY&gt;")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">driver.session()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="transactions-cost"><a class="anchor" href="#transactions-cost"></a>Be aware of the cost of transactions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When submitting queries through <a href="../query-simple/" class="xref page"><code>.execute_query()</code></a> or through <a href="../transactions/#managed-transactions" class="xref page"><code>.execute_read/write()</code></a>, the server automatically wraps them into a <a href="#transaction">transaction</a>.
+This behavior ensures that the database always ends up in a consistent state, regardless of what happens during the execution of a transaction (power outages, software crashes, etc).</p>
+</div>
+<div class="paragraph">
+<p>Creating a safe execution context around a number of queries yields an overhead that is not present if the driver just shoots queries at the server and hopes they will get through.
+The overhead is small, but can add up as the number of queries increases.
+For this reason, if your use case values throughput more than data integrity, you may extract further performance by running all queries within a single (auto-commit) transaction.
+You do this by creating a session and using <code>session.run()</code> to run as many queries as needed.</p>
+</div>
+<div class="listingblock">
+<div class="title">Privilege throughput over data integrity</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">with driver.session(database="neo4j") as session:
+    for i in range(1000):
+        session.run("&lt;QUERY&gt;")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Privilege data integrity over throughput</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">for i in range(1000):
+    driver.execute_query("&lt;QUERY&gt;")
+    # or session.execute_read/write() calls</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lazy-eager-loading"><a class="anchor" href="#lazy-eager-loading"></a>Don&#8217;t fetch large result sets all at once</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When submitting queries that may result in a lot of records, don&#8217;t retrieve them all at once.
+The Neo4j server can retrieve records in batches and stream them to the driver as they become available.
+Lazy-loading a result spreads out network traffic and memory usage (both client- and server-side).</p>
+</div>
+<div class="paragraph">
+<p>For convenience, <a href="../query-simple/" class="xref page"><code>.execute_query()</code></a> always retrieves all result records at once (it is what the <code>Eager</code> in <code>EagerResult</code> stands for).
+To lazy-load a result, you have to use <a href="../transactions/#managed-transactions" class="xref page"><code>.execute_read/write()</code></a> (or other forms of manually-handled <a href="../transactions/" class="xref page">transactions</a>) and <strong>not</strong> cast the <code>Result</code> object to <code>list</code> when processing the result; iterate on it instead.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Comparison between eager and lazy loading</div>
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Eager loading</th>
+<th class="tableblock halign-left valign-top">Lazy loading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>The server has to read all 250 records from the storage before it can send even the first one to the driver (i.e. it takes more time for the client to receive the first record).</p>
+</li>
+<li>
+<p>Before any record is available to the application, the driver has to receive all 250 records.</p>
+</li>
+<li>
+<p>The client has to hold in memory all 250 records.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>The server reads the first record and sends it to the driver.</p>
+</li>
+<li>
+<p>The application can process records as soon as the first record is transferred.</p>
+</li>
+<li>
+<p>Waiting time and resource consumption for the remaining records is deferred to when the application requests more records.</p>
+</li>
+<li>
+<p>The server&#8217;s fetch time can be used for client-side processing.</p>
+</li>
+<li>
+<p>Resource consumption is bounded by the driver&#8217;s fetch size.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Time and memory comparison between eager and lazy loading</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import neo4j
+from time import sleep, time
+import tracemalloc
+
+
+
+URI = "&lt;URI for Neo4j database&gt;"
+AUTH = ("&lt;Username&gt;", "&lt;Password&gt;")
+
+# Returns 250 records, each with properties
+# - `output` (an expensive computation, to slow down retrieval)
+# - `dummyData` (a list of 10000 ints, about 8 KB).
+slow_query = '''
+UNWIND range(1, 250) AS s
+RETURN reduce(s=s, x in range(1,1000000) | s + sin(toFloat(x))+cos(toFloat(x))) AS output,
+       range(1, 10000) AS dummyData
+'''
+# Delay for each processed record
+sleep_time = 0.5
+
+
+def main():
+    with neo4j.GraphDatabase.driver(URI, auth=AUTH) as driver:
+        driver.verify_connectivity()
+
+        start_time = time()
+        log('LAZY LOADING (execute_read)')
+        tracemalloc.start()
+        lazy_loading(driver)
+        log(f'Peak memory usage: {tracemalloc.get_traced_memory()[1]} bytes')
+        tracemalloc.stop()
+        log('--- %s seconds ---' % (time() - start_time))
+
+        start_time = time()
+        log('EAGER LOADING (execute_query)')
+        tracemalloc.start()
+        eager_loading(driver)
+        log(f'Peak memory usage: {tracemalloc.get_traced_memory()[1]} bytes')
+        tracemalloc.stop()
+        log('--- %s seconds ---' % (time() - start_time))
+
+
+def lazy_loading(driver):
+
+    def process_records(tx):
+        log('Submit query')
+        result = tx.run(slow_query)
+
+        for record in result:
+            log(f'Processing record {int(record.get("output"))}')
+            sleep(sleep_time)  # proxy for some expensive operation
+
+    with driver.session(database='neo4j') as session:
+        processed_result = session.execute_read(process_records)
+
+
+def eager_loading(driver):
+    log('Submit query')
+    records, _, _ = driver.execute_query(slow_query, database_='neo4j')
+
+    for record in records:
+        log(f'Processing record {int(record.get("output"))}')
+        sleep(sleep_time)  # proxy for some expensive operation
+
+
+def log(msg):
+    print(f'[{round(time(), 2)}] {msg}')
+
+
+if __name__ == '__main__':
+    main()</code></pre>
+</div>
+</div>
+<div class="listingblock nocollapse">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-output hljs" data-lang="output">[1718014256.98] LAZY LOADING (execute_read)
+[1718014256.98] Submit query
+[1718014256.21] Processing record 0  <i class="conum" data-value="1"></i><b>(1)</b>
+[1718014256.71] Processing record 1
+[1718014257.21] Processing record 2
+...
+[1718014395.42] Processing record 249
+[1718014395.92] Peak memory usage: 786254 bytes
+[1719984711.39] --- 135.9284942150116 seconds ---
+
+[1718014395.92] EAGER LOADING (execute_query)
+[1718014395.92] Submit query
+[1718014419.82] Processing record 0  <i class="conum" data-value="2"></i><b>(2)</b>
+[1718014420.33] Processing record 1
+[1718014420.83] Processing record 2
+...
+[1718014544.52] Processing record 249
+[1718014545.02] Peak memory usage: 89587150 bytes  <i class="conum" data-value="3"></i><b>(3)</b>
+[1719984861.09] --- 149.70468592643738 seconds ---  <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>With lazy loading, the first record is quickly available.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>With eager loading, the first record is available ~25 seconds after the query has been submitted (i.e. after the server has retrieved all 250 records).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Memory usage is larger with eager loading than with lazy loading, because the application materializes a list of 250 records.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The total running time is lower with lazy loading, because while the client processes records the server can fetch the next ones.
+With lazy loading, the client could also stop requesting records after some condition is met (by calling <code>.consume()</code> on the <code>Result</code>), saving time and resources.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The driver&#8217;s <a href="https://neo4j.com/docs/api/python-driver/current/api.html#fetch-size-ref">fetch size</a> affects the behavior of lazy loading.
+It instructs the server to stream an amount of records equal to the fetch size, and then wait until the client has caught up before retrieving and sending more.</p>
+</div>
+<div class="paragraph">
+<p>The fetch size allows to bound memory consumption on the client side.
+It doesn&#8217;t always bound memory consumption on the server side though: that depends on the query.
+For example, a query with <a href="https://neo4j.com/docs/cypher-manual/current/clauses/order-by/"><code>ORDER BY</code></a> requires the whole result set to be loaded into memory for sorting, before records can be streamed to the client.</p>
+</div>
+<div class="paragraph">
+<p>The lower the fetch size, the more messages client and server have to exchange.
+Especially if the server&#8217;s latency is high, a low fetch size may deteriorate performance.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="read-mode"><a class="anchor" href="#read-mode"></a>Route read queries to cluster readers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In a cluster, <strong>route read queries to <a href="/docs/operations-manual/current/clustering/introduction/#clustering-secondary-mode">secondary nodes</a></strong>. You do this by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>specifying <code>routing_="r"</code> in a <a href="../query-simple/#_request_routing" class="xref page"><code>Driver.execute_query()</code></a> call</p>
+</li>
+<li>
+<p>using <code>Session.execute_read()</code> instead of <code>Session.execute_write()</code> (for managed transactions)</p>
+</li>
+<li>
+<p>setting <a href="../transactions/#_request_routing" class="xref page"><code>default_access_mode=neo4j.READ_ACCESS</code> when creating a new session</a> (for explicit transactions).</p>
+</li>
+</ul>
+</div>
+<h3 id="_good_practices_2" class="discrete">Good practices</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">driver.execute_query("MATCH (p:Person) RETURN p", routing_="r")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">session.execute_read(lambda tx: tx.run("MATCH (p:Person) RETURN p"))</code></pre>
+</div>
+</div>
+<h3 id="_bad_practices_2" class="discrete">Bad practices</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">driver.execute_query("MATCH (p:Person) RETURN p")
+# defaults to routing = writers</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">session.execute_write(lambda tx: tx.run("MATCH (p:Person) RETURN p"))
+# don't ask to write on a read-only operation</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="indexes"><a class="anchor" href="#indexes"></a>Create indexes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Create indexes for properties that you often filter against</strong>.
+For example, if you often look up <code>Person</code> nodes by the <code>name</code> property, it is beneficial to create an index on <code>Person.name</code>.
+You can create indexes with the <code>CREATE INDEX</code> Cypher clause, for both nodes and relationships.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Create an index on Person.name
+driver.execute_query("CREATE INDEX person_name FOR (n:Person) ON (n.name)")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="/docs/cypher-manual/current/indexes-for-search-performance/">Indexes for search performance</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="profile-queries"><a class="anchor" href="#profile-queries"></a>Profile queries</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="/docs/cypher-manual/current/query-tuning/basic-example/#_profile_query"><strong>Profile your queries</strong></a> to locate queries whose performance can be improved.
+You can profile queries by prepending them with <code>PROFILE</code>.
+The server output is available in the <code>profile</code> property of the <a href="../result-summary/" class="xref page"><code>ResultSummary</code></a> object.</p>
+</div>
+<div class="listingblock nocollapse">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">_, summary, _ = driver.execute_query("PROFILE MATCH (p {name: $name}) RETURN p", name="Alice")
+print(summary.profile['args']['string-representation'])
+"""
+Planner COST
+Runtime PIPELINED
+Runtime version 5.0
+Batch size 128
+
++-----------------+----------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Details        | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+----------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults | p              |              1 |    1 |       3 |                |                        |           |                     |
+| |               +----------------+----------------+------+---------+----------------+                        |           |                     |
+| +Filter         | p.name = $name |              1 |    1 |       4 |                |                        |           |                     |
+| |               +----------------+----------------+------+---------+----------------+                        |           |                     |
+| +AllNodesScan   | p              |             10 |    4 |       5 |            120 |                 9160/0 |   108.923 | Fused in Pipeline 0 |
++-----------------+----------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 12, total allocated memory: 184
+"""</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case some queries are so slow that you are unable to even run them in reasonable times, you can prepend them with <code>EXPLAIN</code> instead of <code>PROFILE</code>.
+This will return the <em>plan</em> that the server would use to run the query, but without executing it.
+The server output is available in the <code>plan</code> property of the <a href="../result-summary/" class="xref page"><code>ResultSummary</code></a> object.</p>
+</div>
+<div class="listingblock nocollapse">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">_, summary, _ = driver.execute_query("EXPLAIN MATCH (p {name: $name}) RETURN p", name="Alice")
+print(summary.plan['args']['string-representation'])
+"""
+Planner COST
+Runtime PIPELINED
+Runtime version 5.0
+Batch size 128
+
++-----------------+----------------+----------------+---------------------+
+| Operator        | Details        | Estimated Rows | Pipeline            |
++-----------------+----------------+----------------+---------------------+
+| +ProduceResults | p              |              1 |                     |
+| |               +----------------+----------------+                     |
+| +Filter         | p.name = $name |              1 |                     |
+| |               +----------------+----------------+                     |
+| +AllNodesScan   | p              |             10 | Fused in Pipeline 0 |
++-----------------+----------------+----------------+---------------------+
+
+Total database accesses: ?
+"""</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="node-labels"><a class="anchor" href="#node-labels"></a>Specify node labels</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Specify node labels</strong> in all queries.
+This allows the query planner to work much more efficiently, and to leverage indexes where available.
+To learn how to combine labels, see <a href="/docs/cypher-manual/current/syntax/expressions/#query-syntax-label">Cypher &#8594; Label expressions</a>.</p>
+</div>
+<h3 id="_good_practices_3" class="discrete">Good practices</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">driver.execute_query("MATCH (p:Person|Animal {name: $name}) RETURN p", name="Alice")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">with driver.session(database="&lt;DB NAME&gt;") as session:
+    session.run("MATCH (p:Person|Animal {name: $name}) RETURN p", name="Alice")</code></pre>
+</div>
+</div>
+<h3 id="_bad_practices_3" class="discrete">Bad practices</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">driver.execute_query("MATCH (p {name: $name}) RETURN p", name="Alice")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">with driver.session(database="&lt;DB NAME&gt;") as session:
+    session.run("MATCH (p {name: $name}) RETURN p", name="Alice")</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="batch-data-creation"><a class="anchor" href="#batch-data-creation"></a>Batch data creation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Batch queries when creating a lot of records</strong> using the <a href="/docs/cypher-manual/current/clauses/with/"><code>WITH</code></a> and <a href="/docs/cypher-manual/current/clauses/unwind/"><code>UNWIND</code></a> Cypher clauses.</p>
+</div>
+<h3 id="_good_practice" class="discrete">Good practice</h3>
+<div class="listingblock">
+<div class="title">Submit one single queries with all values inside</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">numbers = [{"value": random()} for _ in range(10000)]
+driver.execute_query("""
+    WITH $numbers AS batch
+    UNWIND batch AS node
+    MERGE (n:Number)
+    SET n.value = node.value
+    """, numbers=numbers,
+)</code></pre>
+</div>
+</div>
+<h3 id="_bad_practice" class="discrete">Bad practice</h3>
+<div class="listingblock">
+<div class="title">Submit a lot of single queries, one for each value</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">for _ in range(10000):
+    driver.execute_query("MERGE (:Number {value: $value})", value=random())</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The most efficient way of performing a <em>first import</em> of large amounts of data into a new database is the <a href="/docs/operations-manual/current/tutorial/neo4j-admin-import/"><code>neo4j-admin database import</code></a> command.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="query-parameters"><a class="anchor" href="#query-parameters"></a>Use query parameters</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Always use <a href="../query-simple/#query-parameters" class="xref page">query parameters</a></strong> instead of hardcoding or concatenating values into queries.
+Besides protecting from Cypher injections, this allows to better leverage the database query cache.</p>
+</div>
+<h3 id="_good_practices_4" class="discrete">Good practices</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">driver.execute_query("MATCH (p:Person {name: $name}) RETURN p", name="Alice")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">with driver.session(database="&lt;DB NAME&gt;") as session:
+    session.run("MATCH (p:Person {name: $name}) RETURN p", name="Alice")</code></pre>
+</div>
+</div>
+<h3 id="_bad_practices_4" class="discrete">Bad practices</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">driver.execute_query("MATCH (p:Person {name: 'Alice'}) RETURN p")
+# or
+name = "Alice"
+driver.execute_query("MATCH (p:Person {name: '" + name + "'}) RETURN p")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">with driver.session(database="&lt;DB NAME&gt;") as session:
+    session.run("MATCH (p:Person {name: 'Alice'}) RETURN p")
+    # or
+    name = "Alice"
+    session.run("MATCH (p:Person {name: '" + name + "'}) RETURN p")</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="concurrency"><a class="anchor" href="#concurrency"></a>Concurrency</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Use <a href="../concurrency/" class="xref page">concurrency</a></strong>, either in the form of multithreading or with the async version of the driver.
+This is likely to be more impactful on performance if you parallelize complex and time-consuming queries in your application, but not so much if you run many simple ones.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="merge"><a class="anchor" href="#merge"></a>Use <code>MERGE</code> for creation only when needed</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Cypher clause <a href="/docs/cypher-manual/current/clauses/merge/"><code>MERGE</code></a> is convenient for data creation, as it allows to avoid duplicate data when an exact clone of the given pattern exists.
+However, it requires the database to run <em>two</em> queries: it first needs to <a href="/docs/cypher-manual/current/clauses/match/"><code>MATCH</code></a> the pattern, and only then can it <a href="/docs/cypher-manual/current/clauses/create/"><code>CREATE</code></a> it (if needed).</p>
+</div>
+<div class="paragraph">
+<p>If you know already that the data you are inserting is new, avoid using <code>MERGE</code> and use <code>CREATE</code> directly instead&#8201;&#8212;&#8201;this practically halves the number of database queries.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="filter-notifications"><a class="anchor" href="#filter-notifications"></a>Filter notifications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../result-summary/#_filter_notifications" class="xref page">Filter the category and/or severity of notifications</a> the server should raise.</p>
+</div>
+<h2 id="_glossary" class="discrete glossary">Glossary</h2>
+<div class="dlist glossary">
+<dl>
+<dt><a id="LTS"></a>LTS</dt>
+<dd>
+<p>A <em>Long Term Support</em> release is one guaranteed to be supported for a number of years.
+Neo4j 4.4 is LTS, and Neo4j 5 will also have an LTS version.</p>
+</dd>
+<dt><a id="Aura"></a>Aura</dt>
+<dd>
+<p><a href="https://neo4j.com/cloud/platform/aura-graph-database/">Aura</a> is Neo4j&#8217;s fully managed cloud service.
+It comes with both free and paid plans.</p>
+</dd>
+<dt><a id="Cypher"></a>Cypher</dt>
+<dd>
+<p><a href="/docs/cypher-manual/current/introduction/cypher_overview/">Cypher</a> is Neo4j&#8217;s graph query language that lets you retrieve data from the database.
+It is like SQL, but for graphs.</p>
+</dd>
+<dt><a id="APOC"></a>APOC</dt>
+<dd>
+<p><a href="/docs/apoc/current/">Awesome Procedures On Cypher (APOC)</a> is a library of (many) functions that can not be easily expressed in Cypher itself.</p>
+</dd>
+<dt><a id="Bolt"></a>Bolt</dt>
+<dd>
+<p><a href="/docs/bolt/current/">Bolt</a> is the protocol used for interaction between Neo4j instances and drivers.
+It listens on port 7687 by default.</p>
+</dd>
+<dt><a id="ACID"></a>ACID</dt>
+<dd>
+<p>Atomicity, Consistency, Isolation, Durability (ACID) are properties guaranteeing that database transactions are processed reliably.
+An ACID-compliant DBMS ensures that the data in the database remains accurate and consistent despite failures.</p>
+</dd>
+<dt><a id="eventual_consistency"></a>eventual consistency</dt>
+<dd>
+<p>A database is eventually consistent if it provides the guarantee that all cluster members will, <em>at some point in time</em>, store the latest version of the data.</p>
+</dd>
+<dt><a id="causal_consistency"></a>causal consistency</dt>
+<dd>
+<p>A database is causally consistent if read and write queries are seen by every member of the cluster in the same order.
+This is stronger than <em>eventual consistency</em>.</p>
+</dd>
+<dt><a id="NULL"></a>NULL</dt>
+<dd>
+<p>The null marker is not a type but a placeholder for absence of value.
+For more information, see <a href="/docs/cypher-manual/current/values-and-types/working-with-null/">Cypher &#8594; Working with <code>null</code></a>.</p>
+</dd>
+<dt><a id="transaction"></a>transaction</dt>
+<dd>
+<p>A transaction is a unit of work that is either <em>committed</em> in its entirety or <em>rolled back</em> on failure.
+An example is a bank transfer: it involves multiple steps, but they must <em>all</em> succeed or be reverted, to avoid money being subtracted from one account but not added to the other.</p>
+</dd>
+<dt><a id="backpressure"></a>backpressure</dt>
+<dd>
+<p>Backpressure is a force opposing the flow of data. It ensures that the client is not being overwhelmed by data faster than it can handle.</p>
+</dd>
+<dt><a id="transaction_function"></a>transaction function</dt>
+<dd>
+<p>A transaction function is a callback executed by an <code>execute_read</code> or <code>execute_write</code> call. The driver automatically re-executes the callback in case of server failure.</p>
+</dd>
+<dt><a id="Driver"></a>Driver</dt>
+<dd>
+<p>A <a href="/docs/api/python-driver/current/api.html#neo4j.Driver"><code>Driver</code></a> object holds the details required to establish connections with a Neo4j database.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<nav class="pagination" aria-label="pagination links">
+  <span class="prev"><a href="../query-advanced/" aria-label="Previous: Further query mechanisms">Further query mechanisms</a></span>
+
+  <span class="next"><a href="../connect-advanced/" aria-label="Next: Advanced connection information">Advanced connection information</a></span>
+</nav>
+</article>
+    <aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+      </div>
+  </aside>  </div>
+  
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+
+  <div class="column logo">
+    <div class="logo-footer"></div>
+  </div>
+  
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2024</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
+</div>
+</footer>
+
+  <script src="../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../assets/js/site.js"></script>
+  <script async src="../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../assets/js/vendor/image-zoom.js"></script>
+
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>
+  </body>
+</html>
